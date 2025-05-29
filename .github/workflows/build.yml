@@ -4,12 +4,16 @@ on:
   push:
     branches:
       - main
+      - wip/*
     tags:
       - "v*"
+  pull_request:
+    branches:
+      - main
 
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: yautja/toolbox
+  IMAGE_NAME: ${{ vars.IMAGE_NAME }}
 
 jobs:
   build:
