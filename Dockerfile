@@ -1,5 +1,7 @@
 FROM alpine:3
 
+ARG SRC_VERSION=unknown
+
 RUN apk add --no-cache \
     bash \
     curl \
@@ -8,7 +10,8 @@ RUN apk add --no-cache \
     mongodb-tools \
     postgresql17-client
 
-# Set working directory
+ENV SRC_VERSION=$SRC_VERSION
+
 WORKDIR /home
 
 # Default command
