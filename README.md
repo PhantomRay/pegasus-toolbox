@@ -65,8 +65,7 @@ docker run --rm toolbox mongodump --version
 - **Size**: ~291MB
 - **Platforms**: linux/amd64, linux/arm64
 - **Working Directory**: `/home`
-<<<<<<< Updated upstream
-=======
+
 - **Git Commit Tracking**: Each image includes the source Git commit SHA in the `SRC_VERSION` environment variable
 
 ### Checking Image Version
@@ -78,4 +77,3 @@ docker run --rm your-dockerhub-username/toolbox env | grep SRC_VERSION
 # Or from within the container
 echo $SRC_VERSION
 ```
->>>>>>> Stashed changes
