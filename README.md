@@ -12,28 +12,26 @@ A lightweight Alpine-based Docker image with essential tools for AWS, MongoDB, a
 ## Usage
 
 ```bash
+# Pull from GitHub Container Registry
+docker pull ghcr.io/phantomray/pegasus-toolbox:latest
+
 # Run interactively
-docker run -it your-dockerhub-username/toolbox
+docker run -it ghcr.io/phantomray/pegasus-toolbox
 
 # Run with volume mount
-docker run -it -v $(pwd):/workspace your-dockerhub-username/toolbox
+docker run -it -v $(pwd):/workspace ghcr.io/phantomray/pegasus-toolbox
 
 # Run specific command
-docker run --rm your-dockerhub-username/toolbox aws --version
+docker run --rm ghcr.io/phantomray/pegasus-toolbox aws --version
 ```
 
 ## GitHub Actions Setup
 
-This repository includes GitHub Actions workflow for automatic Docker image building and pushing to DockerHub.
+This repository includes GitHub Actions workflow for automatic Docker image building and pushing to GitHub Container Registry (GHCR).
 
-### Required Secrets
+### Required Permissions
 
-To enable automatic builds, add these secrets to your GitHub repository:
-
-1. Go to your repository → Settings → Secrets and variables → Actions
-2. Add the following secrets:
-   - `DOCKERHUB_USERNAME`: Your DockerHub username
-   - `DOCKERHUB_TOKEN`: Your DockerHub access token (create at https://hub.docker.com/settings/security)
+The workflow uses the built-in `GITHUB_TOKEN` which has permission to push to GHCR by default. No additional secrets configuration needed!
 
 ### Build Triggers
 
@@ -72,8 +70,15 @@ docker run --rm toolbox mongodump --version
 
 ```bash
 # Check the Git commit that built the image
-docker run --rm your-dockerhub-username/toolbox env | grep SRC_VERSION
+docker run --rm ghcr.io/phantomray/pegasus-toolbox env | grep SRC_VERSION
 
 # Or from within the container
 echo $SRC_VERSION
 ```
+
+### Available Tags
+
+- `latest` - Latest stable build from main branch
+- `vX.Y.Z` - Semantic version tags (e.g., `v1.0.0`)
+- `X.Y` - Major.minor version tags
+- `X` - Major version tags
