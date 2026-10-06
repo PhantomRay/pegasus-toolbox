@@ -8,7 +8,7 @@ RUN apk add --no-cache \
     gnupg \
     aws-cli \
     mongodb-tools \
-    postgresql17-client
+    postgresql18-client
 
 ENV SRC_VERSION=$SRC_VERSION
 
